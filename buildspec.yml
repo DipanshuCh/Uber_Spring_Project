@@ -1,48 +1,23 @@
-# this .yml file works successfully
-
-#version: 0.2
-#
-#phases:
-#  install:
-#    runtime-versions:
-#      java: corretto21
-#  build:
-#    commands:
-#      - echo Building, Testing, and packaging the application...
-#      - cd App  # Navigate to the correct directory
-#      - mvn clean package  # Clean and build the project
-#  post_build:
-#    commands:
-#      - echo Build, Testing, and packaging completed.
-#artifacts:
-#  files:
-#    - App/target/*.jar  # Ensure this path is correct after build
-#  discard-paths: yes
-#cache:
-#  paths:
-#    - '/root/.m2/**/*'
-#
-
-
 
 version: 0.2
 
 phases:
   install:
     runtime-versions:
-      java: corretto21  # Ensure this matches your Java version
+      java: corretto21
   build:
     commands:
       - echo Building, Testing, and packaging the application...
-      - cd E:/Uber_Application_Project/UberApplication/UberApplication  # Navigate to the project directory
-      - mvn clean package  # Clean and build the project
+      - mvn clean package  # Build the project (no need for 'cd' if it's in the root)
   post_build:
     commands:
       - echo Build, Testing, and packaging completed.
+
 artifacts:
   files:
-    - E:/Uber_Application_Project/UberApplication/UberApplication/target/*.jar  # Path to JAR file
-  discard-paths: yes  # This discards directory structure and uploads the file itself
+    - target/*.jar  # Ensure this path is correct for the generated JAR files
+  discard-paths: yes
+
 cache:
   paths:
-    - '/root/.m2/**/*'  # Cache Maven dependencies to speed up future builds
+    - '/root/.m2/**/*'
